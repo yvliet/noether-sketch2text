@@ -1,5 +1,5 @@
 {
-  "id": "sketch2text",
+  "id": "noether-sketch2text",
   "name": "Sketch2Text",
   "version": "1.0.0",
   "minAppVersion": "0.4.0",
@@ -15,8 +15,16 @@
     "drawing",
     "recognition"
   ],
-  "icon": "text",
-  "repoUrl": "https://github.com/yvliet/sketch2text",
+  "icon": {
+    "name": "pencil-edit-02",
+    "type": "gradient",
+    "gradientColors": [
+      "#8b5cf6",
+      "#6d28d9"
+    ],
+    "gradientDirection": "135deg"
+  },
+  "repoUrl": "https://github.com/yvliet/noether-sketch2text",
   "dependencies": [
     "sketch"
   ]
