@@ -1,70 +1,72 @@
 # Sketch2Text
 
-Handwritten pen stroke-to-text recognition extension for Flint.
+Converts handwritten pen strokes on the sketch canvas into clean typed text in real time.
 
 ---
 
-## 1. Overview
----
+## 1. Overview & User Experience
 
-Sketch2Text turns handwritten strokes drawn on your note canvas into clean typed text in real time. When enabled via the toggle in the floating Sketch HUD bar, writing characters with your stylus or mouse automatically transcribes them into your document, clearing the ink from your vector drawing layer as you write.
+Stylus input on tablets and touchscreens offers natural spatial expression, but notes are most useful when searchable and machine-readable.
 
-Because Sketch2Text directly hooks into the freehand drawing overlay, it operates as a companion extension to Flint's built-in **Sketch** core extension.
+**Sketch2Text** bridges handwriting and typed notes. When enabled in the floating Sketch HUD, any words or characters you handwrite with your stylus or mouse are automatically recognized and converted into clean typed Markdown text at your cursor position in real time.
 
----
+### Where It Lives in Noether
+- **Floating Sketch HUD**: A dedicated handwriting toggle switch appears right in the Sketch drawing toolbar.
+- **Settings Window**: Configure recognition languages and debounce delay under **Settings** (`Ctrl+,`) → **Sketch2Text**.
 
-## 2. Key Capabilities
----
+## 2. Features & Step-by-Step Guide
 
-- **HUD Toolbar Toggle**: Mounts directly into the floating Sketch bar so you can switch between drawing illustrations and writing text with a single click.
-- **Real-Time Handwriting Transcription**: Recognizes uppercase letters (`A-Z`), lowercase letters (`a-z`), digits (`0-9`), and basic punctuation.
-- **Smart Stroke Grouping**: Uses a configurable multi-stroke buffer (default 350ms) to group multi-stroke letters such as crossing a `t`, dotting an `i`, or finishing an `A`.
-- **Gesture Shortcuts**:
-  - Horizontal swipe to the right (`→`) inserts a space.
-  - Quick horizontal scratch to the left (`←`) deletes the preceding character (Backspace).
-  - Down-and-left return stroke inserts a newline (Enter).
-- **100% Offline & Local-First**: Powered by an in-memory geometric point-cloud recognizer running on the client thread with sub-2ms latency. Zero cloud dependencies, zero external model files, and zero data leakage.
-- **Graceful Dependency Management**: Automatically checks for the Sketch extension. If Sketch is disabled, Sketch2Text enters a quiet standby mode and warns you in Settings.
+### 1. Writing by Hand to Text
+1. Open the Sketch overlay by pressing `Ctrl+Shift+S`.
+2. Toggle the **Handwriting Recognition** switch in the toolbar.
+3. Write words naturally on the canvas.
+4. When you pause writing, Sketch2Text recognizes the ink stroke trajectory and inserts the recognized words into your Markdown document.
 
----
+## 3. Architecture & SDK Blueprint (For Extension Builders)
 
-## 3. Keyboard Shortcuts & Commands
----
+Sketch2Text demonstrates how to intercept freehand vector ink paths from another extension's event stream and dispatch typed text transactions via the Noether SDK.
 
-| Action | Shortcut | Description |
-| :--- | :--- | :--- |
-| **Toggle Pen-to-Text** | `Ctrl+Alt+T` | Switches between vector ink drawing and handwriting transcription |
-| **Space** | Horizontal right flick | Inserts a space character at the cursor |
-| **Backspace** | Horizontal left flick | Deletes the character before the cursor |
-| **Enter** | Down-and-left stroke | Starts a new paragraph |
+### SDK Extension Points Used
+- `this.onEvent('sketch:stroke-completed')`: Listens to completed vector strokes.
+- `this.app.editor.insertText()`: Dispatches recognized text into the active editor buffer.
 
----
+### Real SDK Implementation Pattern
 
-## 4. Configuration Options
----
+```typescript
+import { Extension, NoetherApp } from 'noether';
 
-Open **Settings** (`Ctrl+,`) → **Community Extensions** → **Sketch2Text**:
+export default class Sketch2TextExtension extends Extension {
+  async onload(): Promise<void> {
+    this.app.events.on('sketch:stroke-completed', async (stroke) => {
+      const recognized = await this.recognizeInk(stroke);
+      if (recognized) {
+        this.app.editor.insertText(recognized);
+      }
+    });
+  }
+}
+```
 
-- **Pen-to-Text Mode**: Toggles handwriting recognition on or off globally.
-- **Multi-Stroke Debounce Window**: Adjusts the temporal window (150ms to 800ms) waited before finalizing a letter. Faster writers can reduce this value to 250ms; deliberate writers can increase it to 450ms.
-- **Letter Casing Preference**: Choose between handwritten case (Auto), forced uppercase, or forced lowercase.
-- **Prerequisite Status**: Real-time diagnostic badge displaying whether the parent Sketch extension is active.
+## 4. MCP Tools Reference
 
----
+### 1. `sketch2text_recognize`
+- **Description**: Evaluates vector stroke arrays and returns recognized text string.
+- **Parameters**:
+  - `strokes` (array, required): Array of vector coordinate points.
 
-## 5. Development & Building
----
+## 5. Development & Local Building
 
-To compile the standalone distribution bundle:
+To build and test this community extension locally:
 
 ```bash
-cd community-extensions/sketch2text
+git clone https://github.com/yvliet/noether-sketch2text.git
+cd noether-sketch2text
 npm install
 npm run build
 ```
 
-Or from the Flint monorepo root:
+Copy the compiled bundle `dist/main.js` and `manifest.json` into your vault's `.noether/extensions/noether-sketch2text/` directory and reload Noether.
 
-```bash
-npm run extensions:build
-```
+## 6. License
+
+MIT © [Yuliet Li](https://github.com/yvliet)
