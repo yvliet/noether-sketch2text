@@ -1,7 +1,7 @@
 {
-  "name": "sketch2text",
+  "name": "noether-sketch2text",
   "version": "1.1.0",
-  "description": "Converts handwritten pen strokes on the sketch canvas into typed text in real time for Flint.",
+  "description": "Converts handwritten pen strokes on the sketch canvas into typed text in real time for Noether.",
   "main": "dist/main.js",
   "types": "src/index.ts",
   "scripts": {
@@ -10,18 +10,18 @@
     "typecheck": "tsc --noEmit"
   },
   "keywords": [
-    "flint",
-    "flint-extension",
+    "noether",
+    "noether-extension",
     "sketch",
     "handwriting",
     "ocr",
     "pen-to-text"
   ],
-  "author": "Yuliet Li <yuliet@flintnotes.com>",
+  "author": "Yuliet Li <yuliet@noether.app>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yvliet/sketch2text.git"
+    "url": "git+https://github.com/yvliet/noether-sketch2text.git"
   },
   "devDependencies": {
     "@types/react": "^18.3.18",
@@ -30,7 +30,7 @@
     "typescript": "^5.8.2"
   },
   "peerDependencies": {
-    "flint": "^0.4.0",
+    "noether": "^0.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "zod": "^3.24.2"

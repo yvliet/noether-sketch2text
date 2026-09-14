@@ -2,12 +2,12 @@
  * @module Sketch2TextSettingsTab
  * @description
  * Native settings interface for the Sketch2Text extension.
- * Adheres to Flint Obsidian-grade design guidelines with instant micro-interactions,
+ * Adheres to Noether design standards with instant micro-interactions,
  * grouped setting cards, segmented button controls, and gesture reference tiles.
  */
 
 import React from 'react';
-import type { FlintApp } from 'flint';
+import type { NoetherApp } from 'noether';
 import {
   SettingCard,
   SettingItem,
@@ -15,7 +15,7 @@ import {
   Toggle,
   Slider,
   Select,
-} from 'flint';
+} from 'noether';
 import {
   useSketch2TextStore,
   DEFAULT_SKETCH2TEXT_SETTINGS,
@@ -32,7 +32,7 @@ import {
 } from './Icons';
 
 export interface Sketch2TextSettingsTabProps {
-  app?: FlintApp;
+  app?: NoetherApp;
 }
 
 function formatRecognizedChar(char: string): string {
@@ -88,10 +88,10 @@ export const Sketch2TextSettingsTab: React.FC<Sketch2TextSettingsTabProps> = ({ 
       {/* Overview Header */}
       <div className="flex items-center justify-between px-1">
         <div>
-          <h3 className="text-sm font-semibold text-[var(--flint-text-primary,#ffffff)] mb-0.5">
+          <h3 className="text-sm font-semibold text-[var(--noether-text-primary,#ffffff)] mb-0.5">
             Sketch2Text
           </h3>
-          <p className="text-[11px] text-[var(--flint-text-muted,#777777)]">
+          <p className="text-[11px] text-[var(--noether-text-muted,#777777)]">
             Real-time handwriting recognition and gesture transcription for the Sketch canvas.
           </p>
         </div>
@@ -183,7 +183,7 @@ export const Sketch2TextSettingsTab: React.FC<Sketch2TextSettingsTabProps> = ({ 
               </Button>
             </div>
           ) : (
-            <span className="text-xs text-[var(--flint-text-muted,#777777)] italic">
+            <span className="text-xs text-[var(--noether-text-muted,#777777)] italic">
               Awaiting strokes
             </span>
           )}
@@ -217,7 +217,7 @@ export const Sketch2TextSettingsTab: React.FC<Sketch2TextSettingsTabProps> = ({ 
                   onClick={() => setEngineMode(opt.id)}
                   className={`px-3 py-1 text-xs rounded-[5px] border cursor-pointer select-none ${
                     isSelected
-                      ? 'bg-[var(--flint-accent,#ea580c)] border-transparent text-white font-medium shadow-xs'
+                      ? 'bg-[var(--noether-accent,#ea580c)] border-transparent text-white font-medium shadow-xs'
                       : 'bg-[#181818] border-[#333] text-[#888] hover:text-white hover:border-[#444]'
                   }`}
                 >
@@ -274,7 +274,7 @@ export const Sketch2TextSettingsTab: React.FC<Sketch2TextSettingsTabProps> = ({ 
                   onClick={() => setCasingMode(opt.id)}
                   className={`px-2.5 py-1 text-xs rounded-[5px] border cursor-pointer select-none ${
                     isSelected
-                      ? 'bg-[var(--flint-accent,#ea580c)] border-transparent text-white font-medium shadow-xs'
+                      ? 'bg-[var(--noether-accent,#ea580c)] border-transparent text-white font-medium shadow-xs'
                       : 'bg-[#181818] border-[#333] text-[#888] hover:text-white hover:border-[#444]'
                   }`}
                 >

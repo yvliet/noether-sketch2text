@@ -15,9 +15,10 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "flint": ["../../src/sdk/index.ts"],
-      "@flint/sdk": ["../../src/sdk/index.ts"],
-      "@/*": ["../../src/*"]
+      "noether": ["c:/Users/sultan haikal/Downloads/noether/src/sdk/index.ts"],
+      "noether/*": ["c:/Users/sultan haikal/Downloads/noether/src/sdk/*"],
+      "@noether/*": ["c:/Users/sultan haikal/Downloads/noether/src/sdk/*"],
+      "@/*": ["c:/Users/sultan haikal/Downloads/noether/src/*"]
     },
     "outDir": "./dist"
   },

@@ -19,7 +19,7 @@ export const DEFAULT_SKETCH2TEXT_SETTINGS: Readonly<Sketch2TextSettings> = Objec
   casingMode: 'auto',
 });
 
-const STORAGE_KEY = 'flint_sketch2text_settings';
+const STORAGE_KEY = 'noether_sketch2text_settings';
 
 function loadPersistedSettings(): Sketch2TextSettings {
   if (typeof window === 'undefined' || !window.localStorage) {

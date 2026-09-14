@@ -31,9 +31,6 @@ const buildOptions = {
     '@noether/core',
     '@noether/sdk',
     'noether-sdk',
-    'flint',
-    '@flint/api',
-    '@flint/sdk',
   ],
   alias: {
     '@': 'c:/Users/sultan haikal/Downloads/noether/src',

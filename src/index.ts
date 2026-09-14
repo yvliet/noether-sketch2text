@@ -1,10 +1,10 @@
 /**
  * @module Sketch2TextExtension
  * @description
- * Community extension for Flint that turns handwritten pen strokes on the sketch canvas
+ * Community extension for Noether that turns handwritten pen strokes on the sketch canvas
  * directly into typed text in real time.
  *
- * Integrates via Flint's general-purpose 'sketch:toolbar' slot, critical EventBus stroke
+ * Integrates via Noether's general-purpose 'sketch:toolbar' slot, critical EventBus stroke
  * interception, and local-first geometric point-cloud recognition.
  *
  * @author Yuliet Li
@@ -12,7 +12,7 @@
  */
 
 import React from 'react';
-import { Extension, FlintApp, ExtensionManifest, McpToolResult, z } from 'flint';
+import { Extension, NoetherApp, ExtensionManifest, McpToolResult, z } from 'noether';
 import { useSketch2TextStore } from './store/sketch2TextStore';
 import { StrokeBuffer } from './recognizer/recognizer';
 import { RecognitionResult } from './recognizer/types';
@@ -20,7 +20,7 @@ import { Sketch2TextButton } from './components/Sketch2TextButton';
 import { Sketch2TextSettingsTab } from './components/Sketch2TextSettingsTab';
 
 export const SKETCH2TEXT_MANIFEST: ExtensionManifest = {
-  id: 'sketch2text',
+  id: 'noether-sketch2text',
   name: 'Sketch2Text',
   version: '1.0.0',
   description: 'Converts handwritten pen strokes on the sketch canvas into typed text in real time.',
@@ -33,7 +33,7 @@ export const SKETCH2TEXT_MANIFEST: ExtensionManifest = {
 export class Sketch2TextExtension extends Extension {
   private strokeBuffer: StrokeBuffer | null = null;
 
-  constructor(app: FlintApp, manifest: ExtensionManifest = SKETCH2TEXT_MANIFEST) {
+  constructor(app: NoetherApp, manifest: ExtensionManifest = SKETCH2TEXT_MANIFEST) {
     super(app, manifest);
   }
 
@@ -336,8 +336,8 @@ export class Sketch2TextExtension extends Extension {
 
     // Retrieve active TipTap editor instance from EditorRegistry (with window fallback)
     let editor = this.app.editor.getActiveEditor();
-    if (!editor && typeof window !== 'undefined' && (window as any).__flintEditor) {
-      editor = (window as any).__flintEditor;
+    if (!editor && typeof window !== 'undefined' && (window as any).__noetherEditor) {
+      editor = (window as any).__noetherEditor;
     }
     if (!editor) {
       console.warn('[Sketch2Text] No active editor found to insert recognized text');
