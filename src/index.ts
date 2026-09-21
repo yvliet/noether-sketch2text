@@ -203,7 +203,7 @@ export class Sketch2TextExtension extends Extension {
           return React.createElement(
             'span',
             {
-              className: 'inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono cursor-pointer select-none bg-purple-500/20 text-purple-300 border border-purple-500/40',
+              className: 'inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono select-none bg-purple-500/20 text-purple-300 border border-purple-500/40',
               title: 'Pen-to-Text Mode Active',
               onClick: () => {
                 useSketch2TextStore.getState().togglePenToText();

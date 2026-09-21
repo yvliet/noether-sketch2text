@@ -41,7 +41,7 @@ export const Sketch2TextButton: React.FC<Sketch2TextButtonProps> = React.memo(({
         backgroundColor: isPenToTextActive ? '#2563eb' : '#141414',
         color: isPenToTextActive ? '#ffffff' : '#888888',
       }}
-      className={`p-1.5 rounded flex items-center gap-1.5 cursor-pointer select-none border border-[#2e2e2e] ${
+      className={`p-1.5 rounded flex items-center gap-1.5 select-none border border-[#2e2e2e] ${
         isPenToTextActive
           ? 'font-medium'
           : 'hover:text-[#dcddde] hover:bg-[#202020]'

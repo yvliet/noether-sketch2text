@@ -215,7 +215,7 @@ export const Sketch2TextSettingsTab: React.FC<Sketch2TextSettingsTabProps> = ({ 
                   key={opt.id}
                   type="button"
                   onClick={() => setEngineMode(opt.id)}
-                  className={`px-3 py-1 text-xs rounded-[5px] border cursor-pointer select-none ${
+                  className={`px-3 py-1 text-xs rounded-[5px] border select-none ${
                     isSelected
                       ? 'bg-[var(--noether-accent,#ea580c)] border-transparent text-white font-medium shadow-xs'
                       : 'bg-[#181818] border-[#333] text-[#888] hover:text-white hover:border-[#444]'
@@ -272,7 +272,7 @@ export const Sketch2TextSettingsTab: React.FC<Sketch2TextSettingsTabProps> = ({ 
                   key={opt.id}
                   type="button"
                   onClick={() => setCasingMode(opt.id)}
-                  className={`px-2.5 py-1 text-xs rounded-[5px] border cursor-pointer select-none ${
+                  className={`px-2.5 py-1 text-xs rounded-[5px] border select-none ${
                     isSelected
                       ? 'bg-[var(--noether-accent,#ea580c)] border-transparent text-white font-medium shadow-xs'
                       : 'bg-[#181818] border-[#333] text-[#888] hover:text-white hover:border-[#444]'
